@@ -1,33 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { CgMenuRight } from "react-icons/cg";
 import { IoSearchSharp } from "react-icons/io5";
-import { RxDividerVertical } from "react-icons/rx";
+import { RxCross1, RxDividerVertical } from "react-icons/rx";
 import UseTheme from "../../../hooks/UseTheme";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
+import HoverDropdown from "./HoverDropdown";
 
 const HomePageNav = () => {
-  const { theme, toggleTheme } = UseTheme();
+  const { theme } = UseTheme();
+  const [showSearchButton, SetSearchButton] = useState(true);
   console.log(theme);
+
   const tabsForLargeScreen = (
     <>
       <li>
-        <FlipLink>Home</FlipLink>
+        <HoverDropdown>
+          <FlipLink>Home</FlipLink>
+        </HoverDropdown>
       </li>
       <li>
         <FlipLink>About</FlipLink>
       </li>
       <li>
-        <FlipLink>Pages</FlipLink>
+        <HoverDropdown>
+          <FlipLink>Pages</FlipLink>
+        </HoverDropdown>
       </li>
       <li>
-        <FlipLink>Services</FlipLink>
+        <HoverDropdown>
+          <FlipLink>Services</FlipLink>
+        </HoverDropdown>
       </li>
       <li>
-        <FlipLink>Team</FlipLink>
+        <HoverDropdown>
+          <FlipLink>Team</FlipLink>
+        </HoverDropdown>
       </li>
       <li>
-        <FlipLink>Blog</FlipLink>
+        <HoverDropdown>
+          <FlipLink>Blog</FlipLink>
+        </HoverDropdown>
       </li>
       <li>
         <FlipLink>Contact</FlipLink>
@@ -36,7 +49,7 @@ const HomePageNav = () => {
   );
 
   return (
-    <div className="w-full  mx-auto fixed z-50 px-10 pt-5 flex  justify-between items-center ">
+    <div className="w-full  mx-auto fixed z-50 px-10  flex  justify-between items-center ">
       {/* Logo Div */}
       <div className="flex justify-center items-center">
         {theme === "dark" ? (
@@ -53,8 +66,26 @@ const HomePageNav = () => {
       </div>
       {/* Menu and search div */}
       <div className="flex justify-center item-center gap-8">
-        <div onClick={toggleTheme}>
-          <IoSearchSharp size={24} />
+        <div onClick={() => SetSearchButton(!showSearchButton)}>
+          <div className="dropdown dropdown-bottom dropdown-center translate-x-0.5 ">
+            <div tabIndex={0} role="button">
+              {showSearchButton ? (
+                <IoSearchSharp size={24} />
+              ) : (
+                <RxCross1 size={24} />
+              )}
+            </div>
+            <ul
+              tabIndex={0}
+              className="mt-5 mr-20 dropdown-content menu  bg-gray-100 rounded-box z-1 w-3xs p-3 shadow-sm"
+            >
+              <input
+                type="text"
+                className=" w-full h-10 bg-white pl-3"
+                placeholder="Search.."
+              />
+            </ul>
+          </div>
         </div>
         <div>
           <RxDividerVertical size={24} className="text-gray-300" />
