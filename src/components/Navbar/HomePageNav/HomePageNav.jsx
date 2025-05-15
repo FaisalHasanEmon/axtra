@@ -49,7 +49,7 @@ const HomePageNav = () => {
   );
 
   return (
-    <div className="w-full  mx-auto fixed z-50 px-10  flex  justify-between items-center ">
+    <div className="w-full  mx-auto fixed z-50 px-10 backdrop-blur-2xl flex top-0  justify-between items-center ">
       {/* Logo Div */}
       <div className="flex justify-center items-center">
         {theme === "dark" ? (
