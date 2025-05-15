@@ -81,7 +81,9 @@ const HomePageNav = () => {
             >
               <input
                 type="text"
-                className=" w-full h-10 bg-white pl-3"
+                className={`${
+                  theme === "dark" ? "text-black" : ""
+                } w-full h-10 bg-white pl-3`}
                 placeholder="Search.."
               />
             </ul>
